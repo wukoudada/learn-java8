@@ -14,26 +14,36 @@ import java.util.List;
 public class Java7 {
 
     public static void main(String[] args) {
-        List<Project> result = new ArrayList<>();
+        List<Project> projects = Project.buildData();
 
-        List<Project> projects = new ArrayList<>();
+        List<Project> result = new ArrayList<>();
         for (Project project : projects) {
-            if(project.getStars() > 1000){
+            if (project.getStars() > 1000) {
                 result.add(project);
             }
         }
-        Collections.sort(projects, new Comparator<Project>() {
+        Collections.sort(result, new Comparator<Project>() {
             @Override
             public int compare(Project o1, Project o2) {
                 return o1.getStars().compareTo(o2.getStars());
             }
         });
 
-        List<String> names = new ArrayList<>();
+        List<String> names = new ArrayList<String>();
 
-        for (Project project : projects) {
+        for (Project project : result) {
             names.add(project.getName());
         }
+
+        names.stream().forEach(System.out::println);
+
+//        List<Project> list = Project.buildData();
+//
+        List<Project> list = Project.buildData();
+
+        list.stream().filter((p) -> p.getStars() > 1000).sorted(Comparator.comparing(Project::getStars)).map(Project::getName).forEach(System.out::println);
+
     }
+
 
 }

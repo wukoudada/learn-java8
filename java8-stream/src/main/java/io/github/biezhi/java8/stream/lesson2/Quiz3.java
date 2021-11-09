@@ -51,7 +51,7 @@ public class Quiz3 {
 
     public static void main(String[] args) {
 //        q1();
-//        q2();
+        q2();
         q3();
     }
 

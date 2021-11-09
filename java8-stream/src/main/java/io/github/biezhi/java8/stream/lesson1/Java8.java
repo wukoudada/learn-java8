@@ -26,7 +26,9 @@ public class Java8 {
                 .collect(Collectors.toList());
         System.out.println(names);
 
-        names.stream().forEach(name-> System.out.println(name));
+        names.stream().forEach(name -> System.out.println(name));
+
+
     }
 
 }

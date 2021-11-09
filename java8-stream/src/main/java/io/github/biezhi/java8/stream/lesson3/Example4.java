@@ -5,7 +5,8 @@ import io.github.biezhi.java8.stream.Project;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.partitioningBy;
 
 /**
  * 数据分区
@@ -19,7 +20,7 @@ import static java.util.stream.Collectors.*;
  */
 public class Example4 {
 
-    public static boolean isBackEnd(Project project){
+    public static boolean isBackEnd(Project project) {
         return "java".equalsIgnoreCase(project.getLanguage()) || "python".equalsIgnoreCase(project.getLanguage());
     }
 
@@ -28,6 +29,10 @@ public class Example4 {
 
         Map<Boolean, List<Project>> collect = projects.stream()
                 .collect(partitioningBy(Example4::isBackEnd));
+        System.out.println(collect);
+
+        Map<Boolean, List<Project>> collect2 = projects.stream()
+                .collect(groupingBy(Example4::isBackEnd));
         System.out.println(collect);
     }
 }

@@ -3,6 +3,7 @@ package io.github.biezhi.java8.stream.lesson2;
 import io.github.biezhi.java8.stream.Project;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * 匹配元素
@@ -32,8 +33,13 @@ public class Example5 {
         System.out.println(projects.stream()
                 .noneMatch(p -> p.getAuthor().equals("biezhi")));
 
-        System.out.println(projects.stream().findAny().get());
+        // parallelStream，元素过万时再用。但是要小心用，容易有线程安全问题
+        System.out.println(projects.parallelStream().findAny().get());
         System.out.println(projects.stream().findFirst().get());
+
+        Stream.of("1", "2")
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
     }
 
 }
